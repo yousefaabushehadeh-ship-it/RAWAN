@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramadan Kareem Roro</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom,#ff8e9f,#f40000);
+    text-align:center;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.language-switch{
+    position:absolute;
+    top:10px;
+    right:10px;
+}
+
+.language-switch a{
+    margin:0 10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.page{display:none;}
+.page.active{display:block;}
+.subpage{display:none;}
+.subpage.active{display:block;}
+
+h1{font-size:2.5em;}
+.question{font-size:1.5em;margin:20px;}
+.question2{font-size:2em;margin:20px;}
+
+button{
+    font-size:1.2em;
+    padding:10px 20px;
+    margin:10px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    position:relative;
+}
+
+.yes{background:#4CAF50;color:white;}
+.no{
+    background:#f44336;
+    color:white;
+    position:absolute;
+}
+
+.message{
+    font-size:1.9em;
+    max-width:650px;
+    margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="language-switch">
+<a onclick="switchLanguage('ar')">العربية</a> |
+<a onclick="switchLanguage('en')">English</a>
+</div>
+
+<!-- Arabic -->
+<div id="arabic-page" class="page active">
+
+<div id="ar1" class="subpage active">
+<img src="Ramadan.png" width="200"><br>
+<h1>RMADAN KAREM RORO<br>رمضان كريم رورو</h1>
+<div class="question">هل بتحب يوسف؟</div>
+<button class="yes" id="yes-ar">نعم</button>
+<button class="no" id="no-ar">لا</button>
+</div>
+
+<div id="ar2" class="subpage">
+<div class="question2">هل حتصومي السنه ولا لسا صغيرة؟</div>
+<button class="yes" id="yes2-ar">نعم</button>
+<button class="no" id="no2-ar">لا</button>
+</div>
+
+<div id="ar3" class="subpage">
+<img src="YR.png" width="300"><br>
+<div class="message">
+روان انا بحبك كثير ❤️ وهاض شهر حيمضي 🌙 ومايمر يوم الا وانت بدعائي 🙏  
+وان شاء الله نكون مع بعض للأبد 💑
+</div>
+</div>
+
+</div>
+
+<!-- English -->
+<div id="english-page" class="page">
+
+<div id="en1" class="subpage active">
+<h1>RMADAN KAREM RORO<br>Ramadan Kareem Roro</h1>
+<div class="question">DO YOU LOVE YOUSEF?</div>
+<button class="yes" id="yes-en">Yes</button>
+<button class="no" id="no-en">No</button>
+</div>
+
+<div id="en2" class="subpage">
+<div class="question2">Will you fast with me this year?</div>
+<button class="yes" id="yes2-en">Yes</button>
+<button class="no" id="no2-en">No</button>
+</div>
+
+<div id="en3" class="subpage">
+<div class="message">
+Rawan I love you ❤️  
+I pray every day we stay together forever 🌙
+</div>
+</div>
+
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+
+let currentLanguage="ar";
+
+window.switchLanguage=function(lang){
+currentLanguage=lang;
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.querySelectorAll(".subpage").forEach(p=>p.classList.remove("active"));
+
+if(lang==="ar"){
+document.getElementById("arabic-page").classList.add("active");
+document.getElementById("ar1").classList.add("active");
+document.documentElement.dir="rtl";
+}
+else{
+document.getElementById("english-page").classList.add("active");
+document.getElementById("en1").classList.add("active");
+document.documentElement.dir="ltr";
+}
+}
+
+
+function move(btn){
+let x=Math.random()*(window.innerWidth-100);
+let y=Math.random()*(window.innerHeight-50);
+btn.style.left=x+"px";
+btn.style.top=y+"px";
+}
+
+
+function setup(noBtn,yesBtn,page1,page2){
+noBtn.addEventListener("mouseenter",()=>move(noBtn));
+yesBtn.addEventListener("click",()=>{
+page1.classList.remove("active");
+page2.classList.add("active");
+});
+}
+
+
+setup(
+document.getElementById("no-ar"),
+document.getElementById("yes-ar"),
+document.getElementById("ar1"),
+document.getElementById("ar2")
+);
+
+setup(
+document.getElementById("no2-ar"),
+document.getElementById("yes2-ar"),
+document.getElementById("ar2"),
+document.getElementById("ar3")
+);
+
+setup(
+document.getElementById("no-en"),
+document.getElementById("yes-en"),
+document.getElementById("en1"),
+document.getElementById("en2")
+);
+
+setup(
+document.getElementById("no2-en"),
+document.getElementById("yes2-en"),
+document.getElementById("en2"),
+document.getElementById("en3")
+);
+
+});
+</script>
+
+</body>
+</html>
